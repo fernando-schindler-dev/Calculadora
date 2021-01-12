@@ -1,0 +1,75 @@
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: "Consolas", "Courier New", Courier, monospace;
+  font-weight: bold;
+  color: #fff;
+}
+html {
+  font-size: 16px;
+}
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background: #000;
+}
+.calculadora {
+  display: grid;
+  grid: repeat(6, 1fr) / repeat(4, 1fr);
+  gap: 0.125rem;
+  width: 30rem;
+  height: 45rem;
+  background: #fff;
+  border: 2px solid #fff;
+  border-bottom: 1px solid #fff;
+}
+.calculadora .resultado {
+  grid-column: span 4;
+  background: orangered;
+  font-size: 5rem;
+  overflow: hidden;
+}
+.calculadora .resultado p {
+  text-align: right;
+  line-height: 1.5;
+  padding: 0 1.25rem;
+}
+.calculadora .zero,
+.calculadora .igual {
+  grid-column: span 2;
+}
+.calculadora > input {
+  background: blue;
+  border: none;
+  font-size: 3rem;
+  outline: none;
+}
+.calculadora > input:active {
+  filter: brightness(0.8);
+}
+.calculadora > input:nth-child(4n + 1),
+.calculadora > input:nth-child(4n + 16) {
+  background: darkblue;
+}
+.calculadora > input:nth-child(1n + 17) {
+  background: orangered;
+}
+.autor {
+  margin-top: 2rem;
+  font-weight: bold;
+}
+.autor p {
+  font-size: 1.6875rem;
+  color: #777;
+}
+.autor p span {
+  font-size: 1.9375rem;
+  text-decoration: underline;
+  color: #777;
+}
