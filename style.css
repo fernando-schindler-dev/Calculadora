@@ -21,40 +21,47 @@ body {
 }
 .calculadora {
   display: grid;
-  grid: repeat(6, 1fr) / repeat(4, 1fr);
+  grid: auto repeat(5, 7.5rem) / repeat(4, 7.5rem);
   gap: 0.125rem;
-  width: 30rem;
-  height: 45rem;
-  background: #fff;
   border: 2px solid #fff;
-  border-bottom: 1px solid #fff;
+  background: #fff;
 }
 .calculadora .resultado {
   grid-column: span 4;
   background: orangered;
-  font-size: 5rem;
   overflow: hidden;
 }
-.calculadora .resultado p {
+.calculadora .resultado .visor {
+  min-height: 7.5rem;
+  padding: 1.9rem 1.25rem;
+  font-size: 5rem;
   text-align: right;
-  line-height: 1.5;
-  padding: 0 1.25rem;
+  line-height: 0.75;
+  word-break: break-all;
+}
+.calculadora .resultado .erro {
+  min-width: calc(30rem - 4px);
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  letter-spacing: -0.05rem;
 }
 .calculadora .zero,
 .calculadora .igual {
   grid-column: span 2;
 }
 .calculadora > input {
-  background: blue;
   border: none;
-  font-size: 3rem;
   outline: none;
+  font-size: 3rem;
+  background: #0000dd;
 }
 .calculadora > input:active {
   filter: brightness(0.8);
 }
 .calculadora > input:nth-child(4n + 1),
-.calculadora > input:nth-child(4n + 16) {
+.calculadora > input:nth-child(16) {
   background: darkblue;
 }
 .calculadora > input:nth-child(1n + 17) {
