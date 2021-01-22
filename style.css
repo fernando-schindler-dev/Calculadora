@@ -80,3 +80,29 @@ body {
   text-decoration: underline;
   color: #777;
 }
+
+@media (min-width: 2100px) {
+  html {
+    font-size: 18px;
+  }
+}
+@media (max-width: 550px) {
+  html {
+    font-size: 14px;
+  }
+}
+@media (max-width: 500px) {
+  html {
+    font-size: 12px;
+  }
+}
+@media (max-width: 425px) {
+  html {
+    font-size: 10px;
+  }
+}
+@media (max-width: 350px) {
+  html {
+    font-size: 8px;
+  }
+}
