@@ -1,112 +1,112 @@
-const btns = document.querySelectorAll(".calculadora input");
-const resultado = document.querySelector(".resultado .visor");
-const erro = document.querySelector(".resultado .erro");
-let conta = "";
-let utilizadoIgual = false;
+const btns = document.querySelectorAll('.calculator input');
+const result = document.querySelector('.result .screen');
+const error = document.querySelector('.result .error');
+let account = '';
+let usedEqual = false;
 
-function mostrarErro(tipoErro) {
-  erro.innerText = tipoErro;
+function displayError(typeError) {
+  error.innerText = typeError;
 }
 
-function addValorAConta(valor) {
-  conta += valor;
+function addValueToAccount(value) {
+  account += value;
 }
 
-function executarCalculadora(valor) {
-  if (utilizadoIgual) {
-    conta = "";
-    resultado.innerText = "";
-    utilizadoIgual = false;
+function executeCalculator(value) {
+  if (usedEqual) {
+    account = '';
+    result.innerText = '';
+    usedEqual = false;
   }
 
-  const condicao1 = resultado.innerText.length === 0;
-  const condicao2 = valor === "*" || valor === "/";
-  const condicao3 = valor === "+" || valor === "-" || valor === ".";
-  const condicao4 =
-    conta[conta.length - 1] === "+" ||
-    conta[conta.length - 1] === "-" ||
-    conta[conta.length - 1] === "*" ||
-    conta[conta.length - 1] === "/" ||
-    conta[conta.length - 1] === ".";
-  const condicao5 = conta[conta.length - 2] === "/";
-  const condicao6 = conta[conta.length - 1] === "0";
-  const condicao7 = !(valor === ".");
-  const condicao8 = valor === "=";
-  const condicao9 = valor === "C";
-  const condicao10 = valor === "DEL";
+  const condition1 = result.innerText.length === 0;
+  const condition2 = value === '*' || value === '/';
+  const condition3 = value === '+' || value === '-' || value === '.';
+  const condition4 =
+    account[account.length - 1] === '+' ||
+    account[account.length - 1] === '-' ||
+    account[account.length - 1] === '*' ||
+    account[account.length - 1] === '/' ||
+    account[account.length - 1] === '.';
+  const condition5 = account[account.length - 2] === '/';
+  const condition6 = account[account.length - 1] === '0';
+  const condition7 = !(value === '.');
+  const condition8 = value === '=';
+  const condition9 = value === 'C';
+  const condition10 = value === 'DEL';
 
-  if (condicao1 && condicao8) {
-    mostrarErro("Não é possível calcular sem nenhum número digitado");
-  } else if (condicao1 && condicao2) {
-    mostrarErro("Não é possível iniciar com os valores: × e ÷");
-  } else if ((condicao2 || condicao3) && condicao4) {
-    mostrarErro("Não é possível ter uma sequência com dois operadores");
-  } else if (condicao5 && condicao6 && condicao7) {
-    mostrarErro("Não é possível dividir qualquer número por zero");
-  } else if (condicao4 && condicao8) {
-    mostrarErro("Não é possível calcular com um operador sozinho no final");
-  } else if (condicao9) {
-    conta = conta.slice(0, conta.length - 1);
-    const resultadoLength = resultado.innerText.length;
-    resultado.innerText = resultado.innerText.slice(0, resultadoLength - 1);
-  } else if (condicao10) {
-    conta = "";
-    resultado.innerText = "";
-  } else if (condicao8) {
-    resultado.innerText = eval(conta);
-    utilizadoIgual = true;
+  if (condition1 && condition8) {
+    displayError('Não é possível calcular sem nenhum número digitado');
+  } else if (condition1 && condition2) {
+    displayError('Não é possível iniciar com os valores: × e ÷');
+  } else if ((condition2 || condition3) && condition4) {
+    displayError('Não é possível ter uma sequência com dois operadores');
+  } else if (condition5 && condition6 && condition7) {
+    displayError('Não é possível dividir qualquer número por zero');
+  } else if (condition4 && condition8) {
+    displayError('Não é possível calcular com um operador sozinho no final');
+  } else if (condition9) {
+    account = account.slice(0, account.length - 1);
+    const resultLength = result.innerText.length;
+    result.innerText = result.innerText.slice(0, resultLength - 1);
+  } else if (condition10) {
+    account = '';
+    result.innerText = '';
+  } else if (condition8) {
+    result.innerText = eval(account);
+    usedEqual = true;
   } else {
-    addValorAConta(valor);
+    addValueToAccount(value);
     return true;
   }
   return false;
 }
 
-function condicoesSegurancaEval(valorAVerificar) {
-  const condicoesSeguras =
-    valorAVerificar === "DEL" ||
-    valorAVerificar === "C" ||
-    valorAVerificar === "=" ||
-    valorAVerificar === "0" ||
-    valorAVerificar === "." ||
-    valorAVerificar === "+" ||
-    valorAVerificar === "1" ||
-    valorAVerificar === "2" ||
-    valorAVerificar === "3" ||
-    valorAVerificar === "-" ||
-    valorAVerificar === "4" ||
-    valorAVerificar === "5" ||
-    valorAVerificar === "6" ||
-    valorAVerificar === "*" ||
-    valorAVerificar === "7" ||
-    valorAVerificar === "8" ||
-    valorAVerificar === "9" ||
-    valorAVerificar === "/";
+function securityConditionsEval(valueToCheck) {
+  const safeConditions =
+    valueToCheck === 'DEL' ||
+    valueToCheck === 'C' ||
+    valueToCheck === '=' ||
+    valueToCheck === '0' ||
+    valueToCheck === '.' ||
+    valueToCheck === '+' ||
+    valueToCheck === '1' ||
+    valueToCheck === '2' ||
+    valueToCheck === '3' ||
+    valueToCheck === '-' ||
+    valueToCheck === '4' ||
+    valueToCheck === '5' ||
+    valueToCheck === '6' ||
+    valueToCheck === '*' ||
+    valueToCheck === '7' ||
+    valueToCheck === '8' ||
+    valueToCheck === '9' ||
+    valueToCheck === '/';
 
-  return condicoesSeguras;
+  return safeConditions;
 }
 
-function formatarValor(valorClicado) {
-  let valorFormatado;
+function formatValue(valueClicked) {
+  let valueFormatted;
 
-  if (valorClicado === "×") valorFormatado = "*";
-  else if (valorClicado === "÷") valorFormatado = "/";
+  if (valueClicked === '×') valueFormatted = '*';
+  else if (valueClicked === '÷') valueFormatted = '/';
 
-  return valorFormatado || valorClicado;
+  return valueFormatted || valueClicked;
 }
 
-function cliqueBtn(event) {
-  erro.innerText = "";
+function handleClick(event) {
+  error.innerText = '';
 
-  const valorClicado = event.target.value;
-  const valorFomatado = formatarValor(valorClicado);
+  const valueClicked = event.target.value;
+  const valueFormatted = formatValue(valueClicked);
 
-  let vericacaoSeValorPodeSerAddAoVisor;
+  let securityCheckResult;
 
-  if (condicoesSegurancaEval(valorFomatado))
-    vericacaoSeValorPodeSerAddAoVisor = executarCalculadora(valorFomatado);
+  if (securityConditionsEval(valueFormatted))
+    securityCheckResult = executeCalculator(valueFormatted);
 
-  if (vericacaoSeValorPodeSerAddAoVisor) resultado.innerText += valorClicado;
+  if (securityCheckResult) result.innerText += valueClicked;
 }
 
-btns.forEach((btn) => btn.addEventListener("click", cliqueBtn));
+btns.forEach((btn) => btn.addEventListener('click', handleClick));
